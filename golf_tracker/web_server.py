@@ -20,10 +20,17 @@ processing_lock = threading.Lock()
 def init_processor():
     """Initialize video processor"""
     global processor
-    processor = VideoProcessor("")
-    processor.fps = 30  # Default for web streaming
-    processor.tracker = BallTracker(fps=30)
-    processor.current_frame = None  # Initialize frame storage
+    try:
+        processor = VideoProcessor("")
+        processor.fps = 30  # Default for web streaming
+        processor.tracker = BallTracker(fps=30)
+        processor.current_frame = None  # Initialize frame storage
+        print("Processor initialized successfully")
+    except Exception as e:
+        print(f"Error initializing processor: {e}")
+        import traceback
+        traceback.print_exc()
+        raise
 
 @app.route('/')
 def index():
