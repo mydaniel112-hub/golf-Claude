@@ -4,7 +4,7 @@
     "builder": "NIXPACKS"
   },
   "deploy": {
-    "startCommand": "cd /app && source venv/bin/activate && cd golf_tracker && python3 web_server.py",
+    "startCommand": "cd /app/golf_tracker && /app/venv/bin/python3 web_server.py",
     "restartPolicyType": "ON_FAILURE"
   }
 }

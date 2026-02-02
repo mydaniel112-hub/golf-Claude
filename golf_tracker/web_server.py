@@ -11,7 +11,9 @@ from ball_tracker import BallTracker
 import threading
 import time
 
-app = Flask(__name__)
+# Set template folder path explicitly for Railway
+template_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
+app = Flask(__name__, template_folder=template_dir)
 
 # Global processor instance
 processor = None
