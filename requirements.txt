@@ -1,0 +1,6 @@
+opencv-python==4.8.1.78
+numpy==1.26.4
+scipy==1.11.4
+filterpy==1.4.5
+pillow==10.2.0
+flask==3.0.0
