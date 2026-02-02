@@ -170,4 +170,5 @@ if __name__ == '__main__':
     print("\nStarting server...")
     print("="*60 + "\n")
     
-    app.run(host=host, port=port, debug=False, threaded=True)
+    # Use threaded=True for production
+    app.run(host=host, port=port, debug=False, threaded=True, use_reloader=False)

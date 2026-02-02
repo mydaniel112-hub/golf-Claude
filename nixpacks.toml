@@ -10,4 +10,4 @@ cmds = [
 cmds = ["echo 'Build complete'"]
 
 [start]
-cmd = "cd golf_tracker && ../venv/bin/python3 web_server.py"
+cmd = "cd golf_tracker && PORT=$PORT ../venv/bin/python3 web_server.py"
