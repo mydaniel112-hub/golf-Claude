@@ -1,16 +1,13 @@
 [phases.setup]
-nixPkgs = ["python311", "python311Packages.pip", "python311Packages.setuptools", "python311Packages.virtualenv"]
+nixPkgs = ["python311", "python311Packages.pip", "python311Packages.setuptools"]
 
 [phases.install]
 cmds = [
-  "python3 -m venv venv",
-  "source venv/bin/activate",
-  "pip install --upgrade pip setuptools wheel",
-  "pip install -r golf_tracker/requirements.txt"
+  "python3 -m venv venv && . venv/bin/activate && pip install --upgrade pip setuptools wheel && pip install -r golf_tracker/requirements.txt"
 ]
 
 [phases.build]
 cmds = ["echo 'Build complete'"]
 
 [start]
-cmd = "cd golf_tracker && source ../venv/bin/activate && python3 web_server.py"
+cmd = "cd golf_tracker && ../venv/bin/python3 web_server.py"
