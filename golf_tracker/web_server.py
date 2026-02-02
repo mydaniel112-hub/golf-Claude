@@ -4,6 +4,7 @@ import cv2
 import numpy as np
 import base64
 import io
+import os
 from PIL import Image
 from video_processor import VideoProcessor
 from ball_tracker import BallTracker
@@ -144,18 +145,29 @@ def status():
 
 if __name__ == '__main__':
     init_processor()
+    
+    # Get port from environment (for cloud deployment) or use 5000
+    port = int(os.environ.get('PORT', 5000))
+    host = os.environ.get('HOST', '0.0.0.0')
+    
     # Run on all interfaces so iPhone can connect
     # Find your laptop's IP: ifconfig (Mac/Linux) or ipconfig (Windows)
     print("\n" + "="*60)
     print("Golf Ball Tracker - Web Server")
     print("="*60)
-    print("\nTo access from iPhone:")
-    print("1. Make sure iPhone and laptop are on same WiFi")
-    print("2. Find your laptop IP address:")
-    print("   Mac/Linux: ifconfig | grep 'inet '")
-    print("   Windows: ipconfig | findstr IPv4")
-    print("3. Open Safari on iPhone and go to: http://YOUR_IP:5000")
+    
+    if port == 5000:
+        print("\nTo access from iPhone (local):")
+        print("1. Make sure iPhone and laptop are on same WiFi")
+        print("2. Find your laptop IP address:")
+        print("   Mac/Linux: ifconfig | grep 'inet '")
+        print("   Windows: ipconfig | findstr IPv4")
+        print(f"3. Open Safari on iPhone and go to: http://YOUR_IP:{port}")
+    else:
+        print(f"\nServer running on port {port}")
+        print("Access via your deployment URL")
+    
     print("\nStarting server...")
     print("="*60 + "\n")
     
-    app.run(host='0.0.0.0', port=5000, debug=False, threaded=True)
+    app.run(host=host, port=port, debug=False, threaded=True)
